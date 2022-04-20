@@ -141,6 +141,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AdjencyListGraph.cpp" />
+    <ClCompile Include="disjoint_set.cpp" />
     <ClCompile Include="Heap.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Program.cpp" />
@@ -148,6 +149,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="adjacency_list_graph.h" />
+    <ClInclude Include="disjoint_set.h" />
+    <ClInclude Include="edge_node.h" />
     <ClInclude Include="Heap.h" />
     <ClInclude Include="heap_node.h" />
     <ClInclude Include="Program.h" />

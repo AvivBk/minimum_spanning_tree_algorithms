@@ -10,6 +10,7 @@ namespace minimum_spanning_tree
 		int m_VerticesAmount;
 		int m_EdgesAmount;
 		vertex_list* m_verticesArray;
+
 	public:
 		explicit adjacency_list_graph(int);
 		//ctor dtor

@@ -7,17 +7,13 @@ namespace minimum_spanning_tree
 {
 	vertex_list::vertex_list() : m_head(nullptr), m_tail(nullptr), m_size(0)
 	{
-		
+
 	}
 
-	vertex_node* vertex_list::make_new_node(int vertex, int i_weight_to_next, vertex_node* prev, vertex_node* next)
+	vertex_node* vertex_list::make_new_node(int vertex, int dest, int i_weight_to_next, vertex_node* prev, vertex_node* next)
 	{
-		vertex_node* newNode = new vertex_node();
-
-		newNode->m_vertex = vertex;
-		newNode->m_next = next;
-		newNode->m_prev = prev;
-		newNode->m_weight_to_next = i_weight_to_next;
+		vertex_node* newNode = new vertex_node(vertex, dest, i_weight_to_next);
+		newNode->set_node_ptr(prev, next);
 
 		return newNode;
 	}
@@ -26,7 +22,6 @@ namespace minimum_spanning_tree
 	{
 		m_head = m_tail = nullptr;
 		m_size = 0;
-
 	}
 
 	void vertex_list::add_to_head(vertex_node* i_newNode)
@@ -65,7 +60,7 @@ namespace minimum_spanning_tree
 		vertex_node* res = nullptr;
 		vertex_node* curr = m_head;
 		while (curr != nullptr) {
-			if (curr->m_vertex == i_vertexNum)
+			if (curr->m_edge->get_x() == i_vertexNum)
 			{
 				res = curr;
 				break;
@@ -108,10 +103,10 @@ namespace minimum_spanning_tree
 		return res;
 	}
 
-	int vertex_list::add_to_list(int i_vertexNum, int i_weight_to_next)
+	int vertex_list::add_to_list(int i_vertexNum, int i_dest, int i_weight_to_next)
 	{
 		int res = 1;
-		vertex_node* newNode = make_new_node(i_vertexNum, i_weight_to_next);
+		vertex_node* newNode = make_new_node(i_vertexNum, i_dest, i_weight_to_next);
 		add_to_head(newNode);
 		return res;
 	}
@@ -122,9 +117,7 @@ namespace minimum_spanning_tree
 
 		while (current != nullptr)
 		{
-			std::cout << '(' << i_vertexNum << ',' << current->m_vertex << ')' << std::endl;
-			std::cout << '(' << current->m_weight_to_next  << ')' << std::endl;
-
+			current->m_edge->print();
 			current = current->m_next;
 		}
 	}
@@ -135,6 +128,9 @@ namespace minimum_spanning_tree
 		while (m_head != nullptr) {
 			node = m_head;
 			m_head = node->m_next;
+
+			delete node->m_edge;
+
 			delete node;
 		}
 		m_size = 0;

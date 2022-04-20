@@ -13,7 +13,7 @@ namespace minimum_spanning_tree
 		if ((u < 1) || (v < 1) || (u > m_VerticesAmount - 1) || (v > m_VerticesAmount - 1))
 			return 0;
 		m_EdgesAmount++;
-		return m_verticesArray[u].add_to_list(v, i_weight);
+		return m_verticesArray[u].add_to_list(u,v, i_weight);
 	}
 
 	vertex_list* adjacency_list_graph::make_empty_adjacency_list_graph() const
@@ -60,7 +60,7 @@ namespace minimum_spanning_tree
 	{
 		if(is_value_valid(is_value_valid(i_u) && is_value_valid(i_v) && is_adjacent(i_u,i_v) ))
 		{
-			return m_verticesArray[i_u].get_node_by_data(i_v)->m_weight_to_next;
+			return m_verticesArray[i_u].get_node_by_data(i_v)->m_edge->get_weight();
 		}
 	}
 

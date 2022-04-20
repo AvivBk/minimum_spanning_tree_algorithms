@@ -45,7 +45,7 @@ namespace minimum_spanning_tree
 		int length() const { return m_heap_size; }
 
 
-		void decrease_key(int, int);
+		void decrease_key(int, int) const;
 
 	};
 }

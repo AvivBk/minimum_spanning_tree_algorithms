@@ -42,6 +42,24 @@ namespace minimum_spanning_tree
 		m_heap->print_heap();
 		auto min = m_heap->delete_min();
 		std::cout << min->m_data << min->m_key << std::endl;
+
+		/*auto sets = new disjoint_set(m_graph->length() - 1);
+		sets->print();
+		std::cout << "====================" << std::endl;
+		sets->Union(1, 2);
+		sets->Union(3, 5);
+		sets->Union(6, 3);
+		sets->Union(5, 2);
+		sets->print();
+		std::cout << "====================" << std::endl;
+		if(sets->find(1) == sets->find(5))
+		{
+			std::cout << "TRUE" << std::endl;
+		}
+		else
+		{
+			std::cout << "false" << std::endl;
+		}*/
 	}
 	
 }

@@ -13,7 +13,7 @@ namespace minimum_spanning_tree
 	public:
 
 		// This function creates new Vertex node 
-		vertex_node* make_new_node(int vertex, int i_weight_to_next, vertex_node* prev = nullptr, vertex_node* next = nullptr);
+		vertex_node* make_new_node(int vertex,int dest,int i_weight_to_next, vertex_node* prev = nullptr, vertex_node* next = nullptr);
 
 		// Ctors and Dtors
 		vertex_list();
@@ -43,7 +43,7 @@ namespace minimum_spanning_tree
 		bool remove_from_list(int);
 		//This method add new vertex node to list
 		//The method gets value ( int )
-		int add_to_list(int, int);
+		int add_to_list(int,int,int);
 
 		// Getters
 		vertex_node* get_head() const { return m_head; }

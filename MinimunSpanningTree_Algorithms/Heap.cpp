@@ -118,7 +118,7 @@ namespace minimum_spanning_tree
 		m_heap[idx]->set_node_ptrs(to_add->m_prev, to_add->m_next);
 	}
 
-	void Heap::decrease_key(int i_place, int i_new_key)
+	void Heap::decrease_key(int i_place, int i_new_key) const
 	{
 		m_heap[i_place]->m_key = i_new_key;
 
