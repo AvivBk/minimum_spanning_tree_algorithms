@@ -140,7 +140,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AdjencyListGraph.cpp" />
+    <ClCompile Include="adjacency_list_graph.cpp" />
     <ClCompile Include="disjoint_set.cpp" />
     <ClCompile Include="Heap.cpp" />
     <ClCompile Include="main.cpp" />

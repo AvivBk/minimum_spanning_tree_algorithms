@@ -17,7 +17,6 @@ namespace minimum_spanning_tree
 		void fix_heap(int i_node); //the algorithm fix heap as learned in class
 	public:
 		heap_node** initialize_array_for_heap(int i_source_idx, int i_size);
-		
 		//CTOR
 		Heap();
 		//allocates memory for heap
@@ -28,7 +27,7 @@ namespace minimum_spanning_tree
 		~Heap();
 
 		//a method that prepears the forest before huffman code
-		void build_heap(heap_node** , int );
+		void build_heap(heap_node* , int );
 		//inserts to a huffman tree
 		void insert(heap_node*& );
 		//swaps between two items from an array by indexes a and b
@@ -40,7 +39,7 @@ namespace minimum_spanning_tree
 		//prints the heap
 		void print_heap() const;
 
-
+		bool is_empty()const { return m_heap_size == 0; }
 		heap_node** get_heap_array() const { return m_heap; }
 		int length() const { return m_heap_size; }
 

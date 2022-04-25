@@ -105,13 +105,19 @@ namespace minimum_spanning_tree
 
 	int vertex_list::add_to_list(int i_vertexNum, int i_dest, int i_weight_to_next)
 	{
-		int res = 1;
+		constexpr int res = 1;
 		vertex_node* newNode = make_new_node(i_vertexNum, i_dest, i_weight_to_next);
 		add_to_head(newNode);
 		return res;
 	}
+	int vertex_list::add_to_list(vertex_node* i_to_add)
+	{
+		constexpr int res = 1;
+		add_to_head(i_to_add);
+		return res;
+	}
 
-	void vertex_list::print(int i_vertexNum) const
+	void vertex_list::print() const
 	{
 		vertex_node* current = m_head;
 
@@ -128,9 +134,8 @@ namespace minimum_spanning_tree
 		while (m_head != nullptr) {
 			node = m_head;
 			m_head = node->m_next;
-
-			delete node->m_edge;
-
+		
+			
 			delete node;
 		}
 		m_size = 0;

@@ -9,12 +9,12 @@ namespace minimum_spanning_tree
 	}
 
 
-	void Heap::build_heap(heap_node** i_arr, int i_size)
+	void Heap::build_heap(heap_node* i_arr, int i_size)
 	{
 		allocate_heap(i_size);
 		m_heap_size = i_size;
 		for (int i = 0; i < i_size; ++i) {
-			const auto node = new heap_node(i_arr[i]->m_data, i_arr[i]->m_key);
+			const auto node = new heap_node(i_arr[i].m_data, i_arr[i].m_key);
 			m_heap[i] = new heap_node();
 			m_heap[i] = node;
 		}
@@ -36,28 +36,16 @@ namespace minimum_spanning_tree
 
 	Heap::~Heap()
 	{
-		if (m_allocated)
+		if (m_allocated) 
+		{
+			for (int i = 0; i < m_heap_size; i++) 
+				delete m_heap[i];
 			delete[] m_heap;
+
+		}
 		m_heap = nullptr;
 	}
 
-	heap_node** Heap::initialize_array_for_heap(int i_source_idx, int i_size)
-    {
-		heap_node** array = new heap_node*[i_size];
-
-		for(int i=0; i< i_size; i++)
-		{
-			if(i == i_source_idx)
-			{
-				array[i] = new heap_node(i, 0);
-			}
-			else
-			{
-				array[i] = new heap_node(i);
-			}
-		}
-		return array;
-    }
 
 	void Heap::fix_heap(int i_node)
 	{
@@ -120,11 +108,21 @@ namespace minimum_spanning_tree
 
 	void Heap::decrease_key(int i_place, int i_new_key) const
 	{
-		m_heap[i_place]->m_key = i_new_key;
+		int place =-1;
+		for(int i=0; i < m_heap_size;i++)
+		{
+			if(m_heap[i]->get_vertex_num() == i_place)
+			{
+				place = i;
+				break;
+			}
+		}
+		if (place == -1) { return; }
+		m_heap[place]->m_key = i_new_key;
 
-		while (i_place && m_heap[i_place]->m_key < m_heap[Parent(i_place)]->m_key) {
-			swap(i_place, Parent(i_place));
-			i_place = Parent(i_place);
+		while (place && m_heap[place]->m_key < m_heap[Parent(place)]->m_key) {
+			swap(place, Parent(place));
+			place = Parent(place);
 		}
 	}
 

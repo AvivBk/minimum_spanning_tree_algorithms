@@ -21,7 +21,7 @@
     <ClCompile Include="vertex_list.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AdjencyListGraph.cpp">
+    <ClCompile Include="adjacency_list_graph.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Program.cpp">

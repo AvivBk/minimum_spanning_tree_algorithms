@@ -11,6 +11,7 @@ namespace minimum_spanning_tree
 		int m_y;
 		int m_weight;
 	public:
+		edge_node():m_x(0),m_y(0),m_weight(0){}
 		edge_node(const int i_x, const int i_y , const  int i_weight) : m_x(i_x), m_y(i_y), m_weight(i_weight) {  }
 		edge_node(const int i_x) : m_x(i_x), m_y(0), m_weight(0) {}
 

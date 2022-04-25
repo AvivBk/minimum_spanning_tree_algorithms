@@ -44,7 +44,7 @@ namespace minimum_spanning_tree
 		//This method add new vertex node to list
 		//The method gets value ( int )
 		int add_to_list(int,int,int);
-
+		int add_to_list(vertex_node*);
 		// Getters
 		vertex_node* get_head() const { return m_head; }
 		vertex_node* get_tail() const { return m_tail; }
@@ -57,7 +57,11 @@ namespace minimum_spanning_tree
 		// Setters
 		void set_head(vertex_node* newHead) { m_head = newHead; }
 		void set_tail(vertex_node* newTail) { m_tail = newTail; }
-		void print(int) const;
+		void print() const;
+
+
+
+		
 
 	};
 }

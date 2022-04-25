@@ -19,7 +19,11 @@ namespace minimum_spanning_tree
 		void set_node_values(const int i_data, const int i_key) { m_data = i_data; m_key = i_key; }
 		void set_node_ptrs(heap_node* i_prev, heap_node* i_next) { m_prev = i_prev; m_next = i_next; }
 
-		~heap_node() { delete this; }
+		
+
+
+		int get_vertex_num() const { return m_data; }
+		int get_vertex_key() const { return m_key; }
 	};
 
 
