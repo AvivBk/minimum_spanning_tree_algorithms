@@ -1,13 +1,10 @@
-// minimumSpanningTree_Algorithms.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
+// by : Aviv Barkai , 311452510
 #include "Program.h"
 
 int main(int argc, char** argv)
 {
-		minimum_spanning_tree::Program(argv[1], argv[2]);
-		return 0;
-
+	minimum_spanning_tree::Program finding_minimum_spanning_tree(argv[1], argv[2]);
+	return 0;
 }
 
 

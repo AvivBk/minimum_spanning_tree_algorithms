@@ -1,11 +1,10 @@
 #include "disjoint_set.h"
-
 #include <iostream>
 #include <string>
 
 namespace minimum_spanning_tree
 {
-	disjoint_set::disjoint_set(const int i_size): m_size(i_size + 1)
+	disjoint_set::disjoint_set(const int i_size) : m_size(i_size + 1)
 	{
 		m_ranks_array = new int[m_size];
 		m_parents_array = new int[m_size];
@@ -23,7 +22,7 @@ namespace minimum_spanning_tree
 		}
 		return m_parents_array[i_x];
 	}
-	void disjoint_set::Union(int i_x, int i_y)
+	void disjoint_set::Union(const int i_x, const int i_y)
 	{
 		const int x_rep = find(i_x);
 		const int y_rep = find(i_y);
@@ -31,7 +30,7 @@ namespace minimum_spanning_tree
 		if (x_rep == y_rep)
 			return;
 
-		
+
 		if (m_ranks_array[x_rep] < m_ranks_array[y_rep])
 		{
 			m_parents_array[x_rep] = y_rep;
@@ -40,7 +39,7 @@ namespace minimum_spanning_tree
 		{
 			m_parents_array[y_rep] = x_rep;
 		}
-		else 
+		else
 		{
 			m_parents_array[y_rep] = x_rep;
 			m_ranks_array[x_rep] = m_ranks_array[x_rep] + 1;
@@ -48,13 +47,13 @@ namespace minimum_spanning_tree
 	}
 	void disjoint_set::print() const
 	{
-		for(int i = 0; i < m_size; i++)
+		for (int i = 0; i < m_size; i++)
 		{
 			std::cout << "====================" << std::endl;
 			std::cout << "index : " + std::to_string(i) << std::endl;
 			std::cout << "parent : " << m_parents_array[i] << std::endl;
 			std::cout << "rank : " << m_ranks_array[i] << std::endl;
-			if(m_parents_array[i] == i)
+			if (m_parents_array[i] == i)
 			{
 				std::cout << "Rep" << std::endl;
 			}

@@ -40,27 +40,35 @@ namespace minimum_spanning_tree
 
 	vertex_node* vertex_list::remove_from_tail()
 	{
-		vertex_node* node = m_tail;
-		if (is_empty()) {
+		vertex_node* node = nullptr;
+		if (m_head == nullptr)
+		{
 			return node;
 		}
-		else if (m_head == m_tail) {
-			m_head = m_tail = nullptr;
-		}
-		else {
-			m_tail = m_tail->m_prev;
-			m_tail->m_next = nullptr;
-		}
-		m_size--;
-		return node;
-	}
+		else
+		{
+			node = m_tail;
 
+			if (m_head != m_tail)
+			{
+				m_tail = m_tail->m_prev;
+				m_tail->m_next = nullptr;
+			}
+
+			else
+			{
+				m_head = m_tail = nullptr;
+			}
+			m_size--;
+			return node;
+		}
+	}
 	vertex_node* vertex_list::get_node_by_data(int i_vertexNum) const
 	{
 		vertex_node* res = nullptr;
 		vertex_node* curr = m_head;
 		while (curr != nullptr) {
-			if (curr->m_edge->get_x() == i_vertexNum)
+			if (curr->m_edge->get_y() == i_vertexNum)
 			{
 				res = curr;
 				break;
@@ -87,12 +95,15 @@ namespace minimum_spanning_tree
 			temp = remove_from_tail();
 			res = true;
 		}
-		else if (temp == m_head) {
+		else if (temp == m_head)
+		{
 			m_head = m_head->m_next;
 			m_head->m_prev = nullptr;
+			res = true;
 		}
 		else {
-			if (temp->m_next != nullptr) {
+			if (temp->m_next != nullptr)
+			{
 				temp->m_next->m_prev = temp->m_prev;
 			}
 			temp->m_prev->m_next = temp->m_next;
@@ -134,8 +145,8 @@ namespace minimum_spanning_tree
 		while (m_head != nullptr) {
 			node = m_head;
 			m_head = node->m_next;
-		
-			
+
+
 			delete node;
 		}
 		m_size = 0;

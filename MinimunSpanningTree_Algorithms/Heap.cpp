@@ -1,15 +1,12 @@
 #include "Heap.h"
 
-
 namespace minimum_spanning_tree
 {
-	
 	Heap::Heap() : m_heap(nullptr), m_max_size(0), m_heap_size(0), m_allocated(false)
 	{
 	}
 
-
-	void Heap::build_heap(heap_node* i_arr, int i_size)
+	void Heap::build_heap(const heap_node* i_arr, const int i_size)
 	{
 		allocate_heap(i_size);
 		m_heap_size = i_size;
@@ -23,22 +20,20 @@ namespace minimum_spanning_tree
 			fix_heap(j);
 	}
 
-	void Heap::allocate_heap(int maxSize)
+	void Heap::allocate_heap(const int max_size)
 	{
 		delete m_heap;
-
-		m_heap = new heap_node*[maxSize];
-		m_max_size = maxSize;
+		m_heap = new heap_node * [max_size];
+		m_max_size = max_size;
 		m_heap_size = 0;
 		m_allocated = true;
 	}
 
-
 	Heap::~Heap()
 	{
-		if (m_allocated) 
+		if (m_allocated)
 		{
-			for (int i = 0; i < m_heap_size; i++) 
+			for (int i = 0; i < m_heap_size; i++)
 				delete m_heap[i];
 			delete[] m_heap;
 
@@ -46,8 +41,7 @@ namespace minimum_spanning_tree
 		m_heap = nullptr;
 	}
 
-
-	void Heap::fix_heap(int i_node)
+	void Heap::fix_heap(const int i_node)
 	{
 		int min;
 		const int left = Left(i_node);
@@ -64,8 +58,7 @@ namespace minimum_spanning_tree
 		}
 	}
 
-
-	void Heap::swap(int  a, int b) const
+	void Heap::swap(const int  a, const int b) const
 	{
 		heap_node* temp = m_heap[a];
 		m_heap[a] = m_heap[b];
@@ -79,8 +72,7 @@ namespace minimum_spanning_tree
 		if (m_heap_size < 1)
 			return nullptr;
 
-		auto min = new heap_node(*m_heap[0]);
-
+		const auto min = new heap_node(*m_heap[0]);
 
 		m_heap_size--;
 		m_heap[0]->set_node_values(m_heap[m_heap_size]->m_data, m_heap[m_heap_size]->m_key);
@@ -88,8 +80,7 @@ namespace minimum_spanning_tree
 		fix_heap(0);
 		return(min);
 	}
-	
-	//inserts to a huffman tree just like learned in class
+
 	void Heap::insert(heap_node*& to_add)
 	{
 		if (m_heap_size == m_max_size) {
@@ -106,12 +97,12 @@ namespace minimum_spanning_tree
 		m_heap[idx]->set_node_ptrs(to_add->m_prev, to_add->m_next);
 	}
 
-	void Heap::decrease_key(int i_place, int i_new_key) const
+	void Heap::decrease_key(const int i_place, const int i_new_key) const
 	{
-		int place =-1;
-		for(int i=0; i < m_heap_size;i++)
+		int place = -1;
+		for (int i = 0; i < m_heap_size; i++)
 		{
-			if(m_heap[i]->get_vertex_num() == i_place)
+			if (m_heap[i]->get_vertex_num() == i_place)
 			{
 				place = i;
 				break;
@@ -128,11 +119,9 @@ namespace minimum_spanning_tree
 
 	void Heap::print_heap() const
 	{
-		for (int i = 0; i < m_heap_size; ++i) 
+		for (int i = 0; i < m_heap_size; ++i)
 		{
-			std::cout << "Vertex Number(data) :  (" << m_heap[i]->m_data<<")" << "  weight(key) :  " << m_heap[i]->m_key << std::endl;
+			std::cout << "Vertex Number(data) :  (" << m_heap[i]->m_data << ")" << "  weight(key) :  " << m_heap[i]->m_key << std::endl;
 		}
-
 	}
-
 }
